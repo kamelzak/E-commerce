@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use App\Models\Product;
 
@@ -28,6 +29,17 @@ class CartController extends Controller
         Cart::add($product->id, $product->title, 1, $product->price)->associate('App\Models\Product');
 
         return redirect()->route('products.index')->with('success', 'Product added !');
+    }
+
+    public function update(Request $request, $rowId) 
+    {
+        $data = $request->json()->all();
+
+        Cart::update($rowId, $data['quantity']);
+
+        Session::flash('success', 'Product quantity has been changed to '. $data['quantity']);
+
+        return response()->json(['success' => 'Cart quantity has been updated !']);
     }
 
     public function destroy($rowId)

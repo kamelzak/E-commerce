@@ -49,7 +49,15 @@
                             </div>
                         </th>
                         <td class="border-0 align-middle"><strong>{{ $product->model->getPrice() }}</strong></td>
-                        <td class="border-0 align-middle"><strong>1</strong></td>
+                        <td class="border-0 align-middle">
+                          <div class="col-md-4">
+                            <select name="quantity" id="quantity" data-id="{{ $product->rowId }}" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                              @for ($i = 1; $i < 6; $i++)
+                                <option value="{{$i}}">{{$i}}</option>                                  
+                              @endfor
+                            </select>
+                          </div>
+                        </td>
                         <td class="border-0 align-middle">
                             <form action="{{ route('cart.destroy', $product->rowId) }}" method="POST">
                                 @csrf
@@ -111,5 +119,39 @@
     <p>Cart is currently empty</p>
 </div>
 @endif
+
+@endsection
+
+@section('extra-js')
+
+  <script>
+    var selects = document.querySelectorAll('#quantity');
+    Array.from(selects).forEach((element) => {
+      element.addEventListener('change', function () {
+        var rowId = this.getAttribute('data-id');
+        var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        fetch(
+          `/cart/${rowId}`,
+          {
+            headers : {
+              "Content-type" : "application/json",
+              "Accept" : "application/json, text-plain, */*",
+              "X-Requested-With" : "XMLHttpRequest",
+              "X-CSRF-TOKEN" : token
+            },
+            method : 'patch',
+            body : JSON.stringify({
+              quantity : this.value
+            })
+          }
+        ).then((data) => {
+          console.log(data);
+          location.reload();
+        }).catch((error) => {
+          console.log(error);
+        })
+      });
+    });
+  </script>
 
 @endsection

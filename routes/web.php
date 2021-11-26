@@ -16,11 +16,8 @@ Route::get('/products/{slug}', 'App\Http\Controllers\ProductController@show')->n
 
 Route::get('/cart', 'App\Http\Controllers\CartController@index')->name('cart.index');
 Route::post('/cart/add', 'App\Http\Controllers\CartController@store')->name('cart.store');
+Route::patch('/cart/{rowId}', 'App\Http\Controllers\CartController@update')->name('cart.update');
 Route::delete('/cart/{rowId}', 'App\Http\Controllers\CartController@destroy')->name('cart.destroy');
-
-Route::get('/cart/destroy', function () {
-    Cart::destroy();
-});
 
 /*-------------------------- Checkout routes --------------------------*/
 Route::get('/checkout', 'App\Http\Controllers\CheckoutController@index')->name('checkout.index');
