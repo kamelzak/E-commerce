@@ -8,6 +8,10 @@ use App\Models\Product;
 
 class CartController extends Controller
 {
+    public function index() 
+    {
+        return view('cart.index'); 
+    }
 
     public function store(Request $request)
     {
@@ -24,6 +28,12 @@ class CartController extends Controller
         Cart::add($product->id, $product->title, 1, $product->price)->associate('App\Models\Product');
 
         return redirect()->route('products.index')->with('success', 'Product added !');
+    }
+
+    public function destroy($rowId)
+    {
+        Cart::remove($rowId);
+        return back()->with('success', 'Product removed !');
     }
 
 }

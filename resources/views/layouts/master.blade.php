@@ -11,15 +11,9 @@
 
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <!-- Favicons -->
-    <link rel="apple-touch-icon" href="/docs/5.1/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
-    <link rel="icon" href="/docs/5.1/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
-    <link rel="icon" href="/docs/5.1/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
-    <link rel="manifest" href="/docs/5.1/assets/img/favicons/manifest.json">
-    <link rel="mask-icon" href="/docs/5.1/assets/img/favicons/safari-pinned-tab.svg" color="#7952b3">
-    <link rel="icon" href="/docs/5.1/assets/img/favicons/favicon.ico">
-    <meta name="theme-color" content="#7952b3">
-
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -58,7 +52,7 @@
     <header class="blog-header py-3">
         <div class="row flex-nowrap justify-content-between align-items-center">
         <div class="col-4 pt-1">
-            <a class="link-secondary" href="#">Cart <span class="badge2">{{ Cart::count() }}</span></a>
+            <a class="link-secondary" href="{{ route('cart.index') }}">Cart <span class="badge2">{{ Cart::count() }}</span></a>
         </div>
         <div class="col-4 text-center">
             <a class="blog-header-logo text-dark" href="{{ route('products.index') }}">E-Commerce</a>
@@ -96,6 +90,8 @@
             {{ session('success') }}
         </div>
     @endif
+
+    <!--
     <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
         <div class="col-md-6 px-0">
         <h1 class="display-4 fst-italic">Title of a longer featured blog post</h1>
@@ -103,6 +99,7 @@
         <p class="lead mb-0"><a href="#" class="text-white fw-bold">Continue reading...</a></p>
         </div>
     </div>
+    -->
 
     <div class="row mb-2">
         
@@ -281,10 +278,7 @@
 
 
     <footer class="blog-footer">
-    <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
-    <p>
-        <a href="#">Back to top</a>
-    </p>
+    <p>E-commerce app built with laravel by <a href="https://github.com/kamelzak">@KamelZak</a>.</p>
     </footer>
 
 
