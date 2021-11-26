@@ -14,6 +14,8 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     
+    @yield('extra-scripts')
+
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -30,7 +32,7 @@
             border-radius: 50%;
             font-size: 15px;
             text-align: center;
-            background: #000000;
+            background: #16ace0;
             color: #fefefe;
         }
 
@@ -66,22 +68,19 @@
         </div>
     </header>
 
-    <div class="nav-scroller py-1 mb-2">
-        <nav class="nav d-flex justify-content-between">
-        <a class="p-2 link-secondary" href="#">World</a>
-        <a class="p-2 link-secondary" href="#">U.S.</a>
-        <a class="p-2 link-secondary" href="#">Technology</a>
-        <a class="p-2 link-secondary" href="#">Design</a>
-        <a class="p-2 link-secondary" href="#">Culture</a>
-        <a class="p-2 link-secondary" href="#">Business</a>
-        <a class="p-2 link-secondary" href="#">Politics</a>
-        <a class="p-2 link-secondary" href="#">Opinion</a>
-        <a class="p-2 link-secondary" href="#">Science</a>
-        <a class="p-2 link-secondary" href="#">Health</a>
-        <a class="p-2 link-secondary" href="#">Style</a>
-        <a class="p-2 link-secondary" href="#">Travel</a>
+    <div class="py-2">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link text-dark" href="{{ route('welcome') }}">Home</a>
+                    <a class="nav-link text-dark" href="{{ route('products.index') }}">Shop</a>
+                    <a class="nav-link text-dark" href="#">Blog</a>
+                    <a class="nav-link text-dark" href="#">About us</a>
+                </div>
+            </div>
         </nav>
     </div>
+    
     </div>
 
     <main class="container">
@@ -282,6 +281,6 @@
     </footer>
 
 
-        
+    @yield('extra-js')
 </body>
 </html>

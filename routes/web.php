@@ -7,8 +7,12 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
+/*-------------------------- Products routes --------------------------*/
+
 Route::get('/products', 'App\Http\Controllers\ProductController@index')->name('products.index');
 Route::get('/products/{slug}', 'App\Http\Controllers\ProductController@show')->name('products.show');
+
+/*-------------------------- Cart routes --------------------------*/
 
 Route::get('/cart', 'App\Http\Controllers\CartController@index')->name('cart.index');
 Route::post('/cart/add', 'App\Http\Controllers\CartController@store')->name('cart.store');
@@ -17,3 +21,6 @@ Route::delete('/cart/{rowId}', 'App\Http\Controllers\CartController@destroy')->n
 Route::get('/cart/destroy', function () {
     Cart::destroy();
 });
+
+/*-------------------------- Checkout routes --------------------------*/
+Route::get('/checkout', 'App\Http\Controllers\CheckoutController@index')->name('checkout.index');
