@@ -14,9 +14,9 @@ class ProductController extends Controller
         if (request()->category) {
             $products = Product::with('categories')->whereHas('categories', function ($query) {
                 $query->where('slug', request()->category);
-            })->paginate(6);
+            })->latest()->paginate(6);
         } else  {
-            $products = Product::with('categories')->paginate(6);
+            $products = Product::with('categories')->latest()->paginate(6);
         }
         return view('products.index', compact('products'));
     }
@@ -25,5 +25,16 @@ class ProductController extends Controller
     {
         $product = Product::where('slug', $slug)->firstOrFail();
         return view('products.show', compact('product'));
+    }
+
+    public function search()
+    {
+        request()->validate([
+            'search' => 'required|min:3'
+        ]);
+        $search = request()->input('search');
+        
+        $products = Product::where('title', 'like', "%$search%")->paginate(6);
+        return view('products.search', compact('products'));
     }
 }
