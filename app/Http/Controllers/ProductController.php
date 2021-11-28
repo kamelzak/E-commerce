@@ -11,8 +11,13 @@ class ProductController extends Controller
     //
     public function index() 
     {
-        //dd(Cart::content());
-        $products = Product::latest()->take(6)->get();
+        if (request()->category) {
+            $products = Product::with('categories')->whereHas('categories', function ($query) {
+                $query->where('slug', request()->category);
+            })->paginate(6);
+        } else  {
+            $products = Product::with('categories')->paginate(6);
+        }
         return view('products.index', compact('products'));
     }
 

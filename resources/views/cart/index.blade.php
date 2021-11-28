@@ -50,7 +50,7 @@
                         </th>
                         <td class="border-0 align-middle"><strong>{{ $product->model->getPrice() }}</strong></td>
                         <td class="border-0 align-middle">
-                          <div class="col-md-4">
+                          <div class="col-md-5">
                             <select name="quantity" id="quantity" data-id="{{ $product->rowId }}" class="form-select form-select-sm" aria-label=".form-select-sm example">
                               @for ($i = 1; $i < 6; $i++)
                                 <option value="{{$i}}">{{$i}}</option>                                  
@@ -115,8 +115,25 @@
   </div>
 
 @else
-<div class="col-md-12">
+<div class="px-4 py-4 col-md-12 text-center">
     <p>Cart is currently empty</p>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 </div>
 @endif
 
