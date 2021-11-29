@@ -59,8 +59,13 @@
         <header class="blog-header py-3">
             <div class="row flex-nowrap justify-content-between align-items-center">
             <div class="col-4 pt-1">
-                <a class="link-secondary" href="{{ route('cart.index') }}">Cart <span class="badge2">{{ Cart::count() }}</span></a>
-                <a class="btn btn-sm btn-outline-info" href="#">Sign up</a>
+                @auth
+                    <a class="link-secondary" href="{{ route('cart.index') }}">Cart <span class="badge2">{{ Cart::count() }}</span></a>
+                @endauth
+                @guest
+                    <a class="btn btn-sm btn-outline-info" href="{{ route('register') }}">Sign up</a>  
+                    <a class="btn btn-sm btn-outline-info" href="{{ route('login') }}">Login</a>                  
+                @endguest
             </div>
             <div class="col-4 text-center">
                 <h5 class="blog-header-logo text-dark">E-Commerce</h5>
@@ -75,10 +80,20 @@
             <nav class="navbar navbar-expand-lg navbar-light">
                 <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        <a class="nav-link text-dark" href="{{ route('welcome') }}">Home</a>
+                        <a class="nav-link text-dark" href="{{ route('home') }}">Home</a>
                         <a class="nav-link text-dark" href="{{ route('products.index') }}">Shop</a>
                         <a class="nav-link text-dark" href="#">Blog</a>
                         <a class="nav-link text-dark" href="#">About us</a>
+                        @auth   
+                            <a class="nav-link text-dark" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                Log out
+                            </a>   
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>                     
+                        @endauth
                     </div>
                 </div>
             </nav>
